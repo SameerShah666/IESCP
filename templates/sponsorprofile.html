@@ -1,0 +1,113 @@
+{% extends '_base.html' %}
+{% block title %} Profile {% endblock %}
+{% block content %}
+
+<div class="mt-5">
+    <div class="h2">Welcome {{name}}</div>
+    <hr>
+</div>
+<div class="row my-3">
+    <div class="col">
+        <div class="h5 py-2">Profile preview</div>
+
+        <div class="card">
+
+            <div class="card-body">
+                <div class="my-3">
+                    <center>
+                        <img src="\static\IESCP_wireframe.png" alt="..."
+                            style="max-width: 13rem; border-radius: 5%;object-fit: fill;" id="profile_pic">
+                    </center>
+                    <div class="h6 my-4">Email: {{ session.user_name }}</div>
+                </div>
+                <hr>
+                <div class="h6">Rating: {{No}}</div>
+                <div class="h6">Budget: {earning}</div>
+                <div class="h6">Total Campaigns: {total}</div>
+                <div class="h6">Total running Campaigns: {total}</div>
+            </div>
+            <div class="card-footer">
+
+                <div class="pe-auto">
+                    <a class="btn btn-outline-danger mx-auto" href="{{ url_for('Logout') }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-box-arrow-left me-1" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z" />
+                            <path fill-rule="evenodd"
+                                d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z" />
+                        </svg>
+                        Logout
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-9 col-xs-12">
+        <div class="h5 py-2">Edit Profile details</div>
+        <div class="card">
+            <div class="card-body">
+
+                <form method="post" enctype="multipart/form-data">
+
+                    <div class="mb-3">
+                        <label for="orgName" class="form-label h6">Name</label>
+                        <input type="text" class="form-control" id="orgName" name="orgName" placeholder="John Doe">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="orgIndustry" class="form-label">Organization's Industry</label>
+                        <select class="form-select" aria-label="Default select example" id="orgIndustry"
+                            name="orgIndustry" required>
+                            <option selected>Select</option>
+                            <option value="1">Electronics</option>
+                            <option value="2">Gaming</option>
+                            <option value="3">Entertainment</option>
+                            <option value="4">Beauty</option>
+                            <option value="5">Finance</option>
+                            <option value="6">Food</option>
+                            <option value="7">Fashion</option>
+                            <option value="8">Tourism</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="orgBudget" class="form-label h6">Budget</label>
+                        <div class="input-group">
+                            <div class="input-group-text" id="btnGroupAddon2">$</div>
+                            <input type="number" class="form-control" id="orgBudget">
+                        </div>
+                    </div>
+                
+
+            <div class="mb-3">
+                <label for="profile_pic_input" class="form-label h6">Profile photo</label>
+                <input class="form-control" type="file" id="profile_pic_input" name="profile_pic_input">
+            </div>
+
+            <div class="d-grid gap-2">
+                <button class="btn btn-success" type="submit">Update</button>
+            </div>
+
+            </form>
+
+        </div>
+
+
+    </div>
+
+</div>
+</div>
+
+<script>
+    document.getElementById('profile_pic_input').addEventListener('change', function (event) {
+        var files = event.target.files;
+        var img = document.getElementById('profile_pic');
+        img.src = URL.createObjectURL(files[0]);
+    })
+</script>
+
+{% endblock %}

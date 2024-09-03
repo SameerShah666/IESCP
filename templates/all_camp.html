@@ -1,0 +1,64 @@
+{% extends '_base.html' %}
+{% block title %} Search {% endblock %}
+{% block content %}
+
+<div class="h3 my-3">All Campaigns</div>
+<hr>
+<div class="row">
+    {% for camp in camps %}
+    {% if camp.campaign_visibility == 'Public' %}
+    <div class="col-6">
+        <div class="card h-100">
+            <img src="" class="card-img-top" alt="">
+            <div class="card-body">
+                <h5 class="card-title">{{ camp.campaign_name }}</h5>
+                <p class="card-text">{{ camp.campaign_description }}</p>
+
+                {% for advert in camp.adverts %}
+
+                {% if advert.ad_accepted == 'open' %}
+                <div class="col-12">
+
+                    {% include 'component_ad_view.html' %}
+                    
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="{{advert.ad_id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Advertisement</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+
+
+
+                                <label for="acceptAd" class="h4 my-3">Accept this Advertisement offer</label>
+
+                                <div class="d-grid gap-2">
+                                    <a id="acceptAd" class="btn btn-success" href="{{url_for('take_ad',adId=advert.ad_id)}}">
+                                        Accept
+                                    </a>
+                                </div>
+
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+
+{% endblock %}

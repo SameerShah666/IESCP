@@ -1,0 +1,88 @@
+{% extends '_base.html' %}
+{% block title %} Dashboard {% endblock %}
+{% block content %}
+
+
+<div class="mt-5">
+    <div class="h2">Welcome {{name}}</div>
+    <hr>
+</div>
+<div class="row my-3">
+    <div class="col">
+        <div class="h5 py-2">About</div>
+        <div class="card">
+            <a href="{{ url_for('spn_profile') }}" class="stretched-link"></a>
+            <div class="card-body">
+                <div class="my-3">
+                    <div class="h6 my-4">Email: {{session.get('user_name')}}</div>
+                </div>
+                <hr>
+                <div class="h6">Rating: {No}</div>
+                <div class="h6">Budget: {earning}</div>
+                <div class="h6">Total Campaigns: {total}</div>
+                <div class="h6">Total running Campaigns: {total}</div>
+            </div>
+            <div class="mx-auto">
+                <a class="btn btn-outline-danger mb-3" href="{{ url_for('Logout') }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-box-arrow-left me-1" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z" />
+                        <path fill-rule="evenodd"
+                            d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z" />
+                    </svg>
+                    Logout
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9 col-xs-12">
+        <div class="h5 py-2">Your Requests</div>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+
+            {% for request in requests1 %}
+            <div class="col">
+                <div class="card h-100">
+                    <img src="" class="card-img-top" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ request1.title }}</h5>
+                        <p class="card-text">{{ request1.description }}</p>
+                        <div class="text-end">
+                            <button class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#request1_Modal">View</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+        <hr>
+        <div class="h5 py-2">Your Campaigns</div>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+
+            {% for camp in spn.campaigns %}
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <h5 class="card-title">{{ camp.campaign_name }}</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">{{ camp.campaign_description }}</p>
+                    </div>
+                    <div class="card-footer text-truncate">
+                        {% include 'component_campaign_view.html' %}
+                        <small>
+                            campaign id: {{ camp.campaign_id }}
+                        </small>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

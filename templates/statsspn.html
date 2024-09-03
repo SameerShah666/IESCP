@@ -1,0 +1,47 @@
+{% extends '_base.html' %}
+{% block title %} Search {% endblock %}
+{% block content %}
+
+<div class="h3 my-3">Statistics</div>
+<hr>
+<div class="row row-col card col-11 mx-auto">
+    <div class="card-body col-md-5 col-sm-12 mx-auto">
+
+        <canvas id="myChart">
+        
+        </canvas>
+        <hr>
+        <div class="text-center h4">
+
+            Expence Pie chart
+        </div>
+    </div>
+</div>
+
+<script>
+
+    const label = {{ lables | tojson}};
+
+    const data = {
+        labels: label,
+        datasets: [{
+            label: 'Revenue Pie chart',
+            borderColor: 'rgb(255, 99, 132)',
+            data: {{ datas | tojson}},
+            }]
+        };
+
+    const config = {
+        type: 'doughnut',
+        data: data,
+    };
+
+    const myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+    );
+    console.log(myChart);
+
+</script>
+
+{% endblock %}

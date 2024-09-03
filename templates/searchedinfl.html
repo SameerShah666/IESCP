@@ -1,0 +1,41 @@
+{% extends '_base.html' %}
+{% block title %} Search {% endblock %}
+{% block content %}
+
+<div class="h4 pt-4">Search results for {{ item }}</div>
+<hr>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for inf in infs %}
+    <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="data:image/jpg;charset=utf-8;base64,{{ inf.influencer_image }}" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h4 class="card-title">{{ inf.influencer_name }}</h4>
+              <hr>
+              <dl class="row">
+
+                <dt class="col-sm-4">
+                  Niche:
+                </dt>
+                <dd class="col-sm-8">
+                  {{ inf.influencer_niche }}
+                </dd>
+
+                <dt class="col-sm-4">
+                  Reach:
+                </dt>
+                <dd class="col-sm-8">
+                  {{ inf.influencer_platform_reach }}
+                </dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

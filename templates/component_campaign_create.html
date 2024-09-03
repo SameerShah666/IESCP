@@ -1,0 +1,49 @@
+<button type="button" class="btn-primary nav-link lead" data-bs-toggle="modal" data-bs-target="#Create_Camp_Modal">
+        Create Campaign
+</button>
+
+<div id="Create_Camp_Modal" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">More info</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{{url_for('create_campaign')}}" method="post">
+                <div class="modal-body">
+
+
+                    <label class="h6" for="campName">Campaign Name</label>
+                    <input type="text" class="form-control mb-3" id="campName" name="campName" required>
+
+                    <label class="h6" for="campVis">Visibility</label>
+                    <select class="form-select mb-3" name="campVis" id="campVis" aria-label="Default select example"
+                        required>
+                        <option value="1" selected>Public</option>
+                        <option value="2">Private</option>
+                    </select>
+
+                    <label class="h6" for="campBudg">Budget</label>
+                    <input type="number" class="form-control mb-3" id="campBudg" name="campBudg" required>
+
+                    <label class="h6" for="campDesc">Description</label>
+                    <textarea class="form-control mb-3" id="campDesc" name="campDesc"></textarea>
+
+                    <label class="h6" for="startDate">Start date</label>
+                    <input type="date" class="form-control mb-3" id="startDate" name="startDate" required>
+
+                    <label class="h6" for="endDate">End date</label>
+                    <input type="date" class="form-control mb-3" id="endDate" name="endDate" required>
+
+
+                    <div class="d-grid gap-2" role="group" aria-label="Basic outlined example">
+                        <button type="submit" class="btn btn-success">Create</button>
+                    </div>
+
+                </div>
+                                
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="col mb-3">
+    <div class="card">
+        <div class="card-header">
+            {{advert.ad_name}}
+        </div>
+        <div class="card-body">
+
+            <dl class="row">
+                <dt class="col-sm-4">
+                    Type:
+                </dt>
+                <dd class="col-sm-8">
+                    {{ camp.campaign_visibility }}
+                </dd>
+                <dt class="col-sm-4">
+                    Cost:
+                </dt>
+                <dd class="col-sm-8">
+                    ${{ advert.ad_budget }}
+                </dd>
+            </dl>
+            <div class="d-grid gap-2">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#{{advert.ad_id}}">
+                    View
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>
